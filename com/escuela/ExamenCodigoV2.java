@@ -18,16 +18,16 @@ public class ExamenCodigoV2 {
             System.out.println("=== Captura del alumno " + a + " de 3 ===");
 
             System.out.print("Ingresa el nombre: ");
-            String nombre = nl.nextLine().trim();
+            String nombre = nl.nextLine();
 
             System.out.print("Ingresa el sexo: ");
-            String sexo = nl.nextLine().trim();
+            String sexo = nl.nextLine();
 
             System.out.print("Ingresa la edad: ");
-            int edad = Integer.parseInt(nl.nextLine().trim());
+            int edad = Integer.parseInt(nl.nextLine());
 
             System.out.print("Ingresa la calificacion: ");
-            int calificacion = Integer.parseInt(nl.nextLine().trim());
+            int calificacion = Integer.parseInt(nl.nextLine());
 
             ArrayList<String> alumno = new ArrayList<>();
             alumno.add(nombre);
