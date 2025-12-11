@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprende Java: Tutorial Completo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link">Ciclos y Scanner</a>
+      <a href="listas.html" class="nav-link active">Tutorial Completo</a>
+    </nav>
+
+    <header>
+      <h1>Tutorial: Creando tu Programa</h1>
+      <p>De cero a experto: Listas, Scanner y Tipos de Datos</p>
+    </header>
+
+    <!-- 1. Conceptos Clave -->
+    <section>
+      <h2>1. Conceptos Clave</h2>
+      <p>Antes de ver el código final, repasemos las herramientas que usaremos.</p>
+
+      <h3>A. ArrayList (Listas Dinámicas)</h3>
+      <p>A diferencia de un arreglo normal (<code>[]</code>) que tiene tamaño fijo, un <code>ArrayList</code> crece
+        automáticamente cuando agregas cosas. ¡Es como una hoja de papel infinita!</p>
+      <pre><code><span class="keyword">import</span> java.util.ArrayList;
+
+<span class="comment">// Lista de textos (String)</span>
+<span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt; lista = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+lista.add(<span class="string">"Hola"</span>); <span class="comment">// Agregar</span></code></pre>
+
+      <h3>B. Scanner: nextLine() vs nextInt()</h3>
+      <p>Este es el error más común. <code>nextInt()</code> lee el número pero deja un "enter" invisible. Si luego usas
+        <code>nextLine()</code>, ese "enter" se come tu lectura.
+      </p>
+      <div
+        style="background: rgba(56, 189, 248, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-primary);">
+        <strong>La Regla de Oro:</strong> Para evitar problemas, lee <strong>TODO</strong> como texto usando
+        <code>nextLine()</code>. Si necesitas un número, conviértelo después.
+      </div>
+
+      <h3>C. Tipos de Datos y Conversión</h3>
+      <p>Como nuestra lista guarda texto (<code>String</code>), si tenemos un número (<code>int</code>) debemos
+        convertirlo.</p>
+      <ul>
+        <li><strong>De Texto a Número:</strong> <code>Integer.parseInt("15")</code></li>
+        <li><strong>De Número a Texto:</strong> <code>String.valueOf(15)</code></li>
+      </ul>
+    </section>
+
+    <!-- 2. Análisis de Errores -->
+    <section>
+      <h2>2. Análisis de Errores</h2>
+      <p>Analicemos el código original para entender qué estaba mal. ¡Aprender de los errores es la mejor forma de
+        avanzar!</p>
+
+      <div
+        style="background: rgba(255, 95, 86, 0.1); border-left: 4px solid #ff5f56; padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
+        <h3 style="color: #ff5f56; margin-top: 0; font-size: 1.2rem;">Errores Detectados:</h3>
+        <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+          <li><strong>Error de Scanner:</strong> Usar <code>nextInt()</code> para leer nombres. ¡El programa explota si
+            escribes letras!</li>
+          <li><strong>Mayúsculas:</strong> Escribir <code>arraylist</code> o <code>system</code> en minúsculas. Java no
+            lo entiende.</li>
+          <li><strong>Lógica del For:</strong> Usar <code>i = lista.size()</code> (asignación) en lugar de
+            <code>i < lista.size()</code> (comparación).
+          </li>
+          <li><strong>Variables Duplicadas:</strong> Intentar crear una variable llamada <code>lista</code> dentro de un
+            bucle cuando ya existía una lista con ese nombre afuera.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. El Código Final (V2) -->
+    <section>
+      <h2>3. El Código Final (V2)</h2>
+      <p>Este es el código corregido y mejorado. Pide datos de <strong>3 alumnos</strong>, guarda todo en listas y
+        calcula el promedio.</p>
+
+      <pre><code>
+
+<span class="keyword">import</span> java.util.ArrayList;
+<span class="keyword">import</span> java.util.Scanner;
+
+<span class="keyword">public class</span> ExamenCodigoV2 {
+    <span class="keyword">public static void</span> main(String[] args) {
+        <span class="comment">// 1. PREPARAR EL SCANNER</span>
+        <span class="comment">// Creamos la herramienta 'nl' para leer del teclado.</span>
+        <span class="comment">// System.in significa "Entrada del Sistema" (el teclado).</span>
+        <span class="type">Scanner</span> nl = <span class="keyword">new</span> <span class="type">Scanner</span>(System.in);
+
+        <span class="comment">// 2. PREPARAR LA LISTA DE ALUMNOS</span>
+        <span class="comment">// Aquí guardaremos a TODOS los alumnos.</span>
+        <span class="comment">// &lt;ArrayList&lt;String&gt;&gt; significa que cada elemento de esta lista será OTRA lista (la info de un alumno).</span>
+        <span class="type">ArrayList</span>&lt;<span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt;&gt; alumnos = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+        
+        <span class="comment">// 3. VARIABLE ACUMULADORA</span>
+        <span class="comment">// Esta variable guardará la suma de TODAS las calificaciones.</span>
+        <span class="comment">// La iniciamos en 0 porque al principio no hemos sumado nada.</span>
+        <span class="comment">// Si no la iniciamos, Java nos daría un error.</span>
+        <span class="type">int</span> sumaCalificaciones = <span class="number">0</span>;
+
+        <span class="comment">// 4. CICLO FOR (Repetir 3 veces)</span>
+        <span class="comment">// a = 1: Empezamos con el alumno 1.</span>
+        <span class="comment">// a &lt;= 3: Repetiremos mientras 'a' sea 3 o menos.</span>
+        <span class="comment">// a++: Al terminar una vuelta, pasamos al siguiente alumno.</span>
+        <span class="keyword">for</span> (<span class="type">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">3</span>; a++) {
+            System.out.println(<span class="string">"=== Captura del alumno "</span> + a + <span class="string">" de 3 ==="</span>);
+
+            System.out.println(<span class="string">"Ingresa el nombre:"</span>);
+            <span class="type">String</span> nombre = nl.nextLine(); <span class="comment">// Leemos TODO el texto hasta que den Enter</span>
+
+            System.out.println(<span class="string">"Ingresa el sexo:"</span>);
+            <span class="type">String</span> sexo = nl.nextLine();
+
+            System.out.println(<span class="string">"Ingresa la edad:"</span>);
+            <span class="comment">// Leemos como texto (nextLine) y convertimos a número (parseInt)</span>
+            <span class="comment">// Esto evita el error de que se salte la siguiente pregunta.</span>
+            <span class="type">int</span> edad = Integer.parseInt(nl.nextLine());
+
+            System.out.println(<span class="string">"Ingresa la calificacion:"</span>);
+            <span class="type">int</span> calificacion = Integer.parseInt(nl.nextLine());
+
+            <span class="comment">// --- GUARDAR DATOS DE ESTE ALUMNO ---</span>
+            <span class="comment">// Creamos una lista temporal solo para ESTE alumno actual.</span>
+            <span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt; alumno = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+            alumno.add(nombre);
+            alumno.add(sexo);
+            <span class="comment">// Como la lista es de texto (String), convertimos los números a texto con String.valueOf()</span>
+            alumno.add(String.valueOf(edad));         
+            alumno.add(String.valueOf(calificacion));
+
+            <span class="comment">// Agregamos la lista de ESTE alumno a la lista GENERAL de alumnos</span>
+            alumnos.add(alumno);
+            
+            <span class="comment">// ACUMULAR CALIFICACIÓN</span>
+            <span class="comment">// Sumamos la calificación de este alumno al total acumulado.</span>
+            <span class="comment">// Ejemplo: Si llevamos 80 y este alumno sacó 90, ahora llevamos 170.</span>
+            sumaCalificaciones += calificacion;
+        }
+
+        <span class="comment">// 5. MOSTRAR RESULTADOS</span>
+        System.out.println(<span class="string">"--- Datos Guardados ---"</span>);
+        <span class="comment">// Recorremos la lista general para mostrar a cada alumno</span>
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; alumnos.size(); i++) {
+            <span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt; datos = alumnos.get(i);
+            <span class="comment">// datos.get(0) es el nombre, datos.get(3) es la calificación</span>
+            System.out.println(<span class="string">"Alumno "</span> + (i + <span class="number">1</span>) + <span class="string">": "</span> + datos.get(<span class="number">0</span>) + <span class="string">" - Calif: "</span> + datos.get(<span class="number">3</span>));
+        }
+
+        <span class="comment">// 6. CALCULAR PROMEDIO</span>
+        <span class="comment">// Dividimos la suma total entre 3.0 (con decimal) para tener un resultado exacto.</span>
+        <span class="type">double</span> promedio = sumaCalificaciones / <span class="number">3.0</span>;
+        System.out.println(<span class="string">"Promedio General: "</span> + promedio);
+        
+        <span class="comment">// 7. CERRAR SCANNER</span>
+        <span class="comment">// Es buena práctica cerrar el scanner cuando terminamos de usarlo.</span>
+        <span class="comment">// Esto libera la memoria y los recursos que Windows le prestó a nuestro programa.</span>
+        nl.close();
+    }
+}</code></pre>
+    </section>
+  </div>
+</body>
+
+</html>

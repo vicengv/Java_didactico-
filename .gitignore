@@ -1,0 +1,27 @@
+# Java
+*.class
+*.log
+*.ctxt
+hs_err_pid*
+replay_pid*
+
+# Build directories
+target/
+build/
+out/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Misc
+.history
+*.tmp

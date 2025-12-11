@@ -1,0 +1,10 @@
+Juan
+8.5
+Maria
+9.2
+Pedro
+7.8
+Ana
+9.5
+Luis
+8.0

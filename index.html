@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Java: For & Scanner</title>
+    <meta name="description"
+        content="Guía interactiva para aprender Java con ciclos for y Scanner. Incluye simulador y zona de pruebas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-link active">Ciclos y Scanner</a>
+            <a href="listas.html" class="nav-link">Tutorial Completo</a>
+        </nav>
+
+        <header>
+            <h1>Dominando Java</h1>
+            <p>Una guía interactiva para entender Ciclos y Entradas de datos</p>
+        </header>
+
+        <section>
+            <h2>1. El Ciclo For</h2>
+            <p>Imagina que tienes que repetir una tarea muchas veces, como saludar a 5 personas. En lugar de escribir el
+                saludo 5 veces, usas un <code>for</code>.</p>
+            <p>Es como una máquina que repite instrucciones un número exacto de veces.</p>
+
+            <h3>Estructura:</h3>
+            <pre><code><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+    <span class="comment">// Instrucciones a repetir</span>
+    System.out.println(<span class="string">"Hola "</span> + i);
+}</code></pre>
+            <ul>
+                <li><strong>Inicio (int i = 0):</strong> Donde empieza el contador.</li>
+                <li><strong>Condición (i < 5):</strong> Mientras esto sea verdad, sigue repitiendo.</li>
+                <li><strong>Paso (i++):</strong> Aumenta el contador en 1 cada vez.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>2. La Clase Scanner</h2>
+            <p>El <code>Scanner</code> es como los oídos de tu programa. Le permite "escuchar" lo que el usuario escribe
+                en el teclado.</p>
+
+            <h3>Cómo se usa:</h3>
+            <pre><code><span class="keyword">import</span> java.util.Scanner; <span class="comment">// 1. Importar la herramienta</span>
+
+<span class="comment">// 2. Crear el objeto Scanner</span>
+<span class="type">Scanner</span> scanner = <span class="keyword">new</span> <span class="type">Scanner</span>(System.in);
+
+System.out.println(<span class="string">"¿Cómo te llamas?"</span>);
+<span class="type">String</span> nombre = scanner.nextLine(); <span class="comment">// 3. Leer texto</span>
+
+System.out.println(<span class="string">"Hola "</span> + nombre);</code></pre>
+        </section>
+
+        <section>
+            <h2>3. El Reto</h2>
+            <p>Tu profesor quiere un programa que haga lo siguiente:</p>
+            <ol style="margin-left: 20px; color: var(--text-secondary);">
+                <li>Pedir los datos de <strong>5 alumnos</strong>.</li>
+                <li>Para cada alumno, pedir su <strong>nombre</strong> y su <strong>calificación</strong>.</li>
+                <li>Al final, mostrar el <strong>promedio</strong> de todas las calificaciones.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>4. La Solución</h2>
+            <p>Aquí tienes el código completo que combina el <code>for</code> (para repetir 5 veces) y el
+                <code>Scanner</code> (para leer los datos).</p>
+
+            <pre><code><span class="keyword">package</span> com.escuela; <span class="comment">// PACKAGE: Es como una carpeta para organizar tus archivos de código.</span>
+
+<span class="keyword">import</span> java.util.Scanner; <span class="comment">// Importamos la herramienta Scanner para poder leer lo que escribes en el teclado</span>
+
+<span class="comment">// CLASS: Es la plantilla o molde donde escribimos nuestro programa. Todo en Java vive dentro de una clase.</span>
+<span class="keyword">public class</span> PromedioAlumnos {
+    <span class="keyword">public static void</span> main(String[] args) {
+        <span class="comment">// 1. PREPARACIÓN</span>
+        <span class="comment">// Creamos el objeto 'scanner' que nos servirá para escuchar al usuario</span>
+        <span class="type">Scanner</span> scanner = <span class="keyword">new</span> <span class="type">Scanner</span>(System.in);
+        
+        <span class="comment">// Variables para guardar datos:</span>
+        <span class="type">double</span> sumaCalificaciones = <span class="number">0</span>; <span class="comment">// Aquí iremos sumando todas las notas. Empieza en 0.</span>
+        <span class="type">int</span> totalAlumnos = <span class="number">5</span>;          <span class="comment">// Definimos que serán exactamente 5 alumnos.</span>
+
+        <span class="comment">// 2. EL CICLO FOR (La repetición)</span>
+        <span class="comment">// int i = 1; -> Empezamos contando desde el alumno 1</span>
+        <span class="comment">// i <= totalAlumnos; -> Seguiremos repitiendo mientras 'i' sea menor o igual a 5</span>
+        <span class="comment">// i++; -> Al terminar cada vuelta, sumamos 1 al contador 'i'</span>
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i <= totalAlumnos; i++) {
+            
+            <span class="comment">// Pedimos el nombre</span>
+            System.out.println(<span class="string">"Ingrese el nombre del alumno "</span> + i + <span class="string">":"</span>);
+            <span class="type">String</span> nombre = scanner.nextLine(); <span class="comment">// Guardamos el texto que escriba el usuario en 'nombre'</span>
+
+            <span class="comment">// Pedimos la calificación</span>
+            System.out.println(<span class="string">"Ingrese la calificación de "</span> + nombre + <span class="string">":"</span>);
+            <span class="comment">// Leemos lo que escribe el usuario y lo convertimos a número decimal (double)</span>
+            <span class="type">double</span> calificacion = Double.parseDouble(scanner.nextLine());
+
+            <span class="comment">// 3. ACUMULACIÓN</span>
+            <span class="comment">// Sumamos la nueva calificación al total que ya llevábamos</span>
+            sumaCalificaciones = sumaCalificaciones + calificacion;
+        }
+
+        <span class="comment">// 4. CÁLCULO FINAL</span>
+        <span class="comment">// El promedio es la suma de todo dividido entre la cantidad de alumnos</span>
+        <span class="type">double</span> promedio = sumaCalificaciones / totalAlumnos;
+
+        <span class="comment">// Mostramos el resultado final en pantalla</span>
+        System.out.println(<span class="string">"--------------------------"</span>);
+        System.out.println(<span class="string">"El promedio del grupo es: "</span> + promedio);
+        
+        <span class="comment">// Cerramos el scanner porque ya no lo usaremos más</span>
+        scanner.close();
+    }
+}</code></pre>
+        </section>
+
+        <section>
+            <h2>5. Pruébalo tú mismo</h2>
+            <p>Este simulador ejecuta la lógica del código de arriba. ¡Inténtalo!</p>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div id="terminal-output" class="terminal-output">
+                    Presiona "Ejecutar Programa" para comenzar...
+                </div>
+                <div id="input-area" class="input-area">
+                    <span class="prompt">></span>
+                    <input type="text" id="user-input" autocomplete="off" aria-label="Entrada de datos">
+                </div>
+            </div>
+            <button id="run-btn" class="btn">Ejecutar Programa</button>
+        </section>
+
+        <section>
+            <h2>6. Zona de Pruebas</h2>
+            <p>¿Quieres editar el código y ver qué pasa? Usa este editor online. Copia el código de arriba, pégalo aquí
+                y presiona "Run".</p>
+
+            <div
+                style="background-color: rgba(255, 189, 46, 0.1); border-left: 4px solid #ffbd2e; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;">
+                <strong style="color: #ffbd2e;">¡Importante! Para evitar el error "Timeout":</strong>
+                <p style="margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--text-primary);">
+                    Este editor no es interactivo en tiempo real. Debes escribir <strong>todos los datos de
+                        entrada</strong> en la cajita que dice <strong>STDIN</strong> (Input) <em>antes</em> de
+                    presionar el botón "Run".
+                </p>
+                <details>
+                    <summary style="cursor: pointer; color: var(--accent-primary); font-size: 0.9rem;">Ver ejemplo de
+                        qué poner en STDIN</summary>
+                    <pre
+                        style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(0,0,0,0.3); font-size: 0.85rem; color: var(--text-secondary);">Juan
+85
+Maria
+90
+Pedro
+70
+Luis
+100
+Ana
+88</pre>
+                </details>
+            </div>
+
+            <div style="width: 100%; height: 500px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
+                <iframe src="https://onecompiler.com/embed/java" width="100%" height="100%" frameborder="0"
+                    allow="clipboard-write" title="Java Online Compiler"></iframe>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                ¿No carga el editor? <a href="https://onecompiler.com/java" target="_blank"
+                    style="color: var(--accent-primary);">Ábrelo en una nueva pestaña</a>.
+            </p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
